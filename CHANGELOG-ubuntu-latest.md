@@ -1,5 +1,5 @@
 ## 20201029
-* - wpad
+* - wpad-zh-nextdns-rtsp-mod
 ## 20201028
 * - docker
 
