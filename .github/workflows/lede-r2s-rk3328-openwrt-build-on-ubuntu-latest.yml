@@ -24,14 +24,8 @@ jobs:
         
       - name: 定制化 feeds.conf.default
         run: |
-          #cd lede && sed -i -E 's/#(src-git.+)(helloworld.+)/\1\2/' feeds.conf.default
+          cd lede && sed -i -E 's/#(src-git.+)(helloworld.+)/\1\2/' feeds.conf.default
           #cd lede && sed -i -E 's/#(src-git.+)(helloworld.+)/\1\2/' feeds.conf.default && sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
-          cd lede
-          sed -i -E 's/#(src-git.+)(helloworld.+)/\1\2/' feeds.conf.default
-          sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
-          sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-          sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
-          sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
         
       - name: Update feeds
         run: |
@@ -41,8 +35,8 @@ jobs:
         run: |
           cd lede
           rm -f ./.config*
-          #wget -c https://raw.githubusercontent.com/szdosar/lede-for-r2s/main/r2s-rk3328-config -O .config
-          curl -fsSL https://raw.githubusercontent.com/szdosar/lede-for-r2s/main/r2s-rk3328-config >> .config
+          #wget -c https://raw.githubusercontent.com/josephasmith1/lede-for-r2s/main/r2s-rk3328-config -O .config
+          curl -fsSL https://raw.githubusercontent.com/josephasmith1/lede-for-r2s/main/r2s-rk3328-config >> .config
           
       - name: SSH connection to Actions
         uses: p3terx/debugger-action@main
@@ -103,7 +97,7 @@ jobs:
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
-           repo_name: szdosar/lede-for-r2s
+           repo_name: josephasmith1/lede-for-r2s
         # A personal access token for the GitHub repository in which the release will be created and edited.
         # It is recommended to create the access token with the following scopes: `repo, user, admin:repo_hook`.
            repo_token: ${{ secrets.sec_token }}
